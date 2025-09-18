@@ -1,0 +1,23 @@
+Aadhaar OCR Application
+
+A full-stack application to extract structured information from Aadhaar card images using OCR. Users can upload front and back images of their Aadhaar card, and the app returns extracted details like name, date of birth, gender, Aadhaar number, and address.
+
+Built with Node.js, Express, React, Tailwind CSS, and TSyringe for dependency injection. Uses Tesseract.js for accurate OCR processing.
+
+Features
+
+Upload front and back Aadhaar card images
+
+Extract Aadhaar details automatically using OCR
+
+Display extracted data in a clean, organized format
+
+Responsive UI with React + Tailwind CSS
+
+Error handling and user-friendly notifications
+
+Tech Stack
+
+Backend: Node.js, Express, TypeScript, TSyringe, Tesseract.js
+Frontend: React, Tailwind CSS
+Other: Axios for API calls, optional toast notifications
