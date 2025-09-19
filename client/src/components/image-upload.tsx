@@ -78,11 +78,14 @@ export default function ImageUpload({ label, onUpload, uploadedFile }: ImageUplo
         <Card className="relative">
           <CardContent className="p-4">
             <div className="relative">
-              <img
-                src={preview || "/placeholder.svg"}
-                alt={`${label} preview`}
-                className="w-full h-48 object-cover rounded-lg"
-              />
+             <div className="overflow-auto max-h-96">
+  <img
+    src={preview || "/placeholder.svg"}
+    alt={`${label} preview`}
+    className="w-full object-contain rounded-lg"
+  />
+</div>
+
               <button
                 onClick={removeFile}
                 className="absolute top-2 right-2 p-1 bg-destructive text-destructive-foreground rounded-full hover:bg-destructive/90 transition-colors"

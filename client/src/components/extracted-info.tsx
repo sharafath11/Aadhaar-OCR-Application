@@ -5,7 +5,7 @@ import type { ExtractedInfoProps } from "../types/types"
 
 
 export default function ExtractedInfo({ data }: ExtractedInfoProps) {
-  
+
   return (
     <div className="space-y-6">
       <div className="text-center">
@@ -13,7 +13,6 @@ export default function ExtractedInfo({ data }: ExtractedInfoProps) {
           ✓ Extraction Complete
         </Badge>
         <h3 className="text-2xl font-bold text-foreground">Aadhaar Information Extracted</h3>
-        <p className="text-muted-foreground mt-2">Review the extracted information below and download if needed</p>
       </div>
 
       <Card className="shadow-lg">

@@ -1,17 +1,13 @@
 import { injectable } from "tsyringe";
 import { IAdharaOcrService } from "../core/interfaces/services/IAdharOcr.service";
-import { IAadhaarTypes } from "../types/adharTypes";
+import { IAadhaarData } from "../types/adharTypes";
+import { extractTextFromImages } from "../utils/ocr.util";
+import { parseAadhaarText } from "../utils/aadhaarParser.util";
 
 @injectable()
 export class AdhaarOcrServices implements IAdharaOcrService {
-    async adharaOcrService(data: IAadhaarTypes): Promise<IAadhaarTypes> {
-        return {
-            aadhaarNumber: "1254845215712",
-            address: "hghbnjkoi uyhghb",
-            dob: "21/12/12",
-            gender: "Male",
-            name: "sharafath",
-            pincode:"673019"
-        }
-    }
+  async adharaOcrService(frontImage: Express.Multer.File,backImage: Express.Multer.File): Promise<IAadhaarData> {
+      const fullText = await extractTextFromImages(frontImage, backImage);
+      return parseAadhaarText(fullText);
+  }
 }

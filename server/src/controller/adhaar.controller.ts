@@ -10,11 +10,18 @@ import { MSG } from "../const/messages";
 export class AadhaarController implements IAdharaOcrController {
   constructor(@inject(TYPES.IAdharaOcrService) private _ocrService : IAdharaOcrService){}
   async adharDetiles(req: Request, res: Response): Promise<void> {
-      try {
-        const result = await this._ocrService.adharaOcrService(req.body)
-        sendResponse(res,StatusCode.OK,MSG.ok,true,result)
-      } catch (error) {
-        handleControllerError(res,error)
-      }
+    try {
+      const files = req.files as { 
+        frontImage?: Express.Multer.File[]; 
+        backImage?: Express.Multer.File[];
+      };
+      console.log("file",req.files)
+     if(!files?.frontImage?.[0] || !files?.backImage?.[0]) return sendResponse( res,StatusCode.BAD_REQUEST,MSG.NO_FILE,false);
+      
+      const result = await this._ocrService.adharaOcrService(files.frontImage[0] ,files.backImage[0]);
+      sendResponse(res, StatusCode.OK, MSG.ok, true, result);
+    } catch (error) {
+      handleControllerError(res, error);
+    }
   }
 }
