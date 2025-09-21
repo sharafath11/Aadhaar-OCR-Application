@@ -1,9 +1,9 @@
 import "reflect-metadata"
-import "../src/core/di/container"
+import "./core/di/container"
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import adharRoutes from "../src/routes/adharOcr.routes"
+import adharRoutes from "./routes/adharOcr.routes"
 
 dotenv.config();
 

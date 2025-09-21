@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2019",
     "module": "commonjs",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,      
+    "emitDecoratorMetadata": true,     
+    "esModuleInterop": true,
     "strict": true,
-    "esModuleInterop": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "lib": ["ES2019", "DOM"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"]
 }
