@@ -1,5 +1,5 @@
-import { IAadhaarTypes } from "../../../types/adharTypes";
+import { IAadhaarData } from "../../../types/adharTypes";
 
 export interface IAdharaOcrService {
-    adharaOcrService(frontImage:Express.Multer.File,backImage: Express.Multer.File):Promise<IAadhaarTypes>
+    adharaOcrService(frontImage:Express.Multer.File,backImage: Express.Multer.File):Promise<IAadhaarData>
 }
