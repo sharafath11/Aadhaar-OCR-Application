@@ -40,22 +40,17 @@ export default function ImageUpload({ label, onUpload, uploadedFile }: ImageUplo
   }
 
   const handleFile = (file: File) => {
-    // Validate file type
     const validTypes = ["image/jpeg", "image/jpg", "image/png"]
     if (!validTypes.includes(file.type)) {
       alert("Please upload a valid image file (JPG, JPEG, or PNG)")
       return
     }
-
-    // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       alert("File size must be less than 5MB")
       return
     }
 
     onUpload(file)
-
-    // Create preview
     const reader = new FileReader()
     reader.onload = (e) => {
       setPreview(e.target?.result as string)
