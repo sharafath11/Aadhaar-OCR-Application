@@ -7,6 +7,7 @@ import { handleControllerError, sendResponse } from "../utils/response";
 import { StatusCode } from "../enums/statusCode.enum";
 import { MSG } from "../const/messages"; 
 import { validateImageFile } from "../utils/fileValidation";
+import { validateAadhaarNumber } from "../utils/validation";
 @injectable()
 export class AadhaarController implements IAdharaOcrController {
   constructor(@inject(TYPES.IAdharaOcrService) private _ocrService : IAdharaOcrService){}
@@ -21,7 +22,11 @@ export class AadhaarController implements IAdharaOcrController {
       if (!frontValidation.isValid)return sendResponse(res, frontValidation.error!.status, frontValidation.error!.message, false);
       const backValidation = validateImageFile(files.backImage[0]);
       if (!backValidation.isValid)return sendResponse(res, backValidation.error!.status, backValidation.error!.message, false);
-      const result = await this._ocrService.adharaOcrService(files.frontImage[0] ,files.backImage[0]);
+      const result = await this._ocrService.adharaOcrService(files.frontImage[0], files.backImage[0]);
+      const aadhaarValidation = validateAadhaarNumber(result?.aadhaarNumber);
+    if (!aadhaarValidation.isValid) {
+      return sendResponse(res, aadhaarValidation.status!, aadhaarValidation.message!, false);
+    }
       sendResponse(res, StatusCode.OK, MSG.ok, true, result);
     } catch (error) {
       handleControllerError(res, error);

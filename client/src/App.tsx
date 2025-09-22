@@ -36,10 +36,10 @@ const handleOCRProcess = async () => {
     formData.append("frontImage", frontImage)
     formData.append("backImage", backImage)
 
-    const data = await fetchDeteils(formData);
-    console.log("data from backend",data)
-    setExtractedData(data.data);
-    toast.success(data.msg)
+    const res = await fetchDeteils(formData);
+    if (!res.ok) return toast.error(res.msg);
+    setExtractedData(res.data);
+    toast.success(res.msg)
   } catch (err) {
     toast.error("Failed to process Aadhaar card. Please try again.")
   } finally {

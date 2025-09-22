@@ -1,4 +1,3 @@
-import { Request } from "express";
 import { StatusCode } from "../enums/statusCode.enum";
 import { MSG } from "../const/messages";
 
