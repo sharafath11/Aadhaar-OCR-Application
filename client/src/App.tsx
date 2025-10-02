@@ -7,6 +7,7 @@ import type { AadhaarData } from "./types/types"
 import { fetchDeteils } from "./services/api"
 import {Toaster , toast } from "sonner"
 
+
 export default function App() {
   const [frontImage, setFrontImage] = useState<File | null>(null)
   const [backImage, setBackImage] = useState<File | null>(null)
@@ -79,7 +80,6 @@ const handleOCRProcess = async () => {
             </p>
           </div>
 
-          
 
           {!extractedData ? (
             <Card className="mb-8">

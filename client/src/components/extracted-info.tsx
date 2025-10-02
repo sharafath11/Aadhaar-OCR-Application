@@ -1,10 +1,28 @@
-import { User, Calendar, Users, CreditCard, MapPin} from "lucide-react"
+import { User, Calendar, Users, CreditCard, MapPin, Clipboard} from "lucide-react"
 import { Badge } from "./ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import type { ExtractedInfoProps } from "../types/types"
-
+import { Button } from "./ui/button"
+import copy from "copy-to-clipboard";
+import { useState } from "react"
 
 export default function ExtractedInfo({ data }: ExtractedInfoProps) {
+   const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    const formatted = `
+Aadhaar Details
+---------------
+Full Name     : ${data.name}
+Date of Birth : ${data.dateOfBirth}
+Gender        : ${data.gender}
+Aadhaar No.   : ${data.aadhaarNumber}
+Address       : ${data.address}
+    `.trim();
+
+    copy(formatted);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="space-y-6">
@@ -21,6 +39,10 @@ export default function ExtractedInfo({ data }: ExtractedInfoProps) {
             <CreditCard className="h-5 w-5 text-primary" />
             <span>Aadhaar Card Details</span>
           </CardTitle>
+           <Button variant="outline" size="sm" onClick={handleCopy}>
+            <Clipboard className="h-4 w-4 mr-2" />
+            {copied ? "Copied!" : "Copy"}
+          </Button>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
