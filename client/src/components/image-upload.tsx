@@ -86,11 +86,7 @@ export default function ImageUpload({ label, onUpload, uploadedFile }: ImageUplo
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="mt-3 flex items-center space-x-2 text-sm text-muted-foreground">
-              <FileImage className="h-4 w-4" />
-              <span>{uploadedFile?.name}</span>
-              <span>({(uploadedFile?.size || 0 / 1024 / 1024).toFixed(2)} MB)</span>
-            </div>
+            
           </CardContent>
         </Card>
       ) : (
